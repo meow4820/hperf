@@ -4,10 +4,16 @@ def start():
     while True:
         os.system("clear||cls")
         print("============ hPerf ============")
-        print("\nSelect test type:\n1. Single core\n2. Multi core\n")
-        ans = input(">> ")
+        print("\nSelect test type:\n\n1. Single core\n2. Multi core\n\n3. Exit")
+        ans = input("\n>> ")
 
         if ans == "1": # single core
+            os.system("clear||cls")
+            print("============ WARNING ============")
+            print("For better accuracy, you need to close all heavy apps!")
+            print("Press ENTER to continue...")
+            input()
+
             time_total = 0
 
             for test in range(10):
@@ -34,6 +40,11 @@ def start():
             input()
 
         elif ans == "2": # multi core
+            os.system("clear||cls")
+            print("============ WARNING ============")
+            print("For better accuracy, you need to close all heavy apps!")
+            print("Press ENTER to continue...")
+            input()
             time_total = 0
 
             for test in range(10):
@@ -58,3 +69,7 @@ def start():
                   f"\nPoints: {round(points, 1)} pts")
             print("\n\nPress ENTER to continue")
             input()
+
+        elif ans == "3":
+            os.system("clear||cls")
+            exit()
