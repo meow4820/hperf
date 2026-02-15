@@ -6,6 +6,10 @@
 
 🚀 Launching: `python {hPerf directory}/src/main.py`
 
+## 🚨 Warning:
+
+It's highly recommended to close all programs on your device to get accurate results!
+
 ## 📸 Screenshots:
 
 ### Main menu
