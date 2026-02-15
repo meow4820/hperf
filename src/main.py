@@ -1,3 +1,5 @@
+# Launcher for hPerf
+
 import frontend
 
 if __name__ == "__main__":
