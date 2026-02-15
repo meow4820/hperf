@@ -9,7 +9,7 @@
 ## 📸 Screenshots:
 
 ### Main menu
-<img width="805" height="321" alt="image" src="https://github.com/user-attachments/assets/f9e7a735-bafd-454f-9315-7c6cfd2f41bf" />
+<img width="804" height="321" alt="image" src="https://github.com/user-attachments/assets/f9e7a735-bafd-454f-9315-7c6cfd2f41bf" />
 
 ### Informaton in main menu
 <img width="804" height="356" alt="image" src="https://github.com/user-attachments/assets/d09e93a2-5acf-4e60-89b5-ba2648ecfcf4" />
