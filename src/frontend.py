@@ -1,15 +1,34 @@
 import backend, os, time
 
+version = ""
+
 def start():
+    try:
+        temp = os.path.dirname(os.path.realpath(__file__))
+        dir = temp[:-4] # getting a program directory, example: /home/user/hperf/
+    except Exception:
+        dir = "Error"
+
+    try:
+        with open(f"{dir}/.version", "r") as ver:
+            version = ver.read() # getting a program version (in .version)
+    except:
+        version = "Error" # for example, if file doesn't exist
+
     while True:
         os.system("clear||cls")
-        print("============ hPerf ============")
-        print("\nSelect test type:\n\n1. Single core\n2. Multi core\n\n3. Exit")
+        print("=============== hPerf ===============")
+        print("\nSelect test type:\n\n" +
+                "1. Single-core test\n" +
+                "2. Multi-core test\n\n" +
+                
+                "3. Information\n" +
+                "4. Exit")
         ans = input("\n>> ")
 
         if ans == "1": # single core
             os.system("clear||cls")
-            print("============ WARNING ============")
+            print("============== WARNING ==============")
             print("For better accuracy, you need to close all heavy apps!")
             print("Press ENTER to continue...")
             input()
@@ -41,7 +60,7 @@ def start():
 
         elif ans == "2": # multi core
             os.system("clear||cls")
-            print("============ WARNING ============")
+            print("============== WARNING ==============")
             print("For better accuracy, you need to close all heavy apps!")
             print("Press ENTER to continue...")
             input()
@@ -71,5 +90,16 @@ def start():
             input()
 
         elif ans == "3":
+            os.system("clear||cls")
+            print(     "============ Information ============")
+            print(  f"\nCPU cores: {backend.get(1)}")
+            print(    f"CPU model: {backend.get(2)}")
+            print(  f"\nProgram version: {version}")
+            print(    f"Program directory {dir}")
+
+            print("\n\nPress ENTER to continue...\n")
+            input()
+
+        elif ans == "4": # exit
             os.system("clear||cls")
             exit()

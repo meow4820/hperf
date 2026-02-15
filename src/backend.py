@@ -1,4 +1,16 @@
-import multiprocessing
+import multiprocessing, subprocess
+
+def get(info):
+    ret = ""
+    
+    if info == 1: # CPU cores
+        ret = multiprocessing.cpu_count()
+    elif info == 2: # CPU model
+        otpt = subprocess.check_output("lscpu | grep 'Model name'", shell=True, text=True)
+        model = otpt.replace("Model name:", "").strip()
+        ret = model
+
+    return ret
 
 def cnt(start, end): # counting benchmark
     result = 0
