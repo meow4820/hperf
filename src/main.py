@@ -1,6 +1,6 @@
 # Launcher for hPerf
 
-import frontend, os
+import frontend
 
 if __name__ == "__main__":
     frontend.start()
