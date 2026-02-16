@@ -10,6 +10,10 @@
 
 It's highly recommended to close all programs on your device to get accurate results!
 
+Tested on: Linux, Android.
+
+Windows support is not guaranteed!
+
 ## 📸 Screenshots:
 
 ### Main menu
