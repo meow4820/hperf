@@ -3,17 +3,38 @@ import backend, os, time
 version = ""
 
 def start():
-    try:
-        temp = os.path.dirname(os.path.realpath(__file__))
-        dir = temp[:-4] # getting a program directory, example: /home/user/hperf/
-    except Exception:
-        dir = "Error"
+    version = backend.version()
 
-    try:
-        with open(f"{dir}/.version", "r") as ver:
-            version = ver.read() # getting a program version (in .version)
-    except:
-        version = "Error" # for example, if file doesn't exist
+    os.system("clear||cls")
+    print("Checking for updates...")
+    upd = backend.update_check()
+    if upd == 2:
+        print("Update detected!\nYou can download the newest version from GitHub" +
+            "\nhttps://github.com/meow4820/hperf")
+        print("\n Press ENTER to continue...")
+        input()
+
+    elif upd == 1:
+        print("Lastest version is already installed")
+        time.sleep(0.5)
+
+    elif upd == 3:
+        print("Update failed :(\n\n" +
+              "curl is not installed!\n\n" +
+              "Press ENTER to continue...")
+        input()
+
+    elif upd == 4:
+        print("Update failed :(\n\n" +
+              "Cannot open .version file\n\n" +
+              "Press ENTER to continue...")
+        input()
+    
+    else:
+        print(f"Update failed :(\n\n" +
+               "{upd}\n\n" +
+               "Press ENTER to continue...")
+        input()
 
     while True:
         os.system("clear||cls")
@@ -37,11 +58,11 @@ def start():
 
             for test in range(10):
                 os.system("clear||cls")
-                print( "============= Single-core test =============")
+                print(     "============= Single-core test =============")
                 if test != 9:
-                    print(f"================== {test + 1} / 10 ==================")
+                    print(f"============= {test + 1} / 10 =======================")
                 elif test == 9: # handling the last test
-                    print(f"================== {test + 1} / 10 =================")
+                    print(f"============= {test + 1} / 10 ======================")
                 start = time.time() # test start time
                 backend.spd(1, 25_000_000)
                 end = time.time() # test end time
@@ -68,11 +89,11 @@ def start():
 
             for test in range(10):
                 os.system("clear||cls")
-                print( "============= Multi-core test =============")
+                print( "============= Multi-core test ==============")
                 if test != 9:
-                    print(f"================= {test + 1} / 10 ==================")
-                elif test == 9:
-                    print(f"================ {test + 1} / 10 ==================")
+                    print(f"============= {test + 1} / 10 =======================")
+                elif test == 9: # handling the last test
+                    print(f"============= {test + 1} / 10 ======================")
                 start = time.time()
                 backend.spd(2, 25_000_000)
                 end = time.time()

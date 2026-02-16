@@ -1,4 +1,50 @@
-import multiprocessing, subprocess
+import multiprocessing, subprocess, os, shutil
+
+def directory():
+    try:
+        temp = os.path.dirname(os.path.realpath(__file__))
+        dir = temp[:-4] # getting a program directory, example: /home/user/hperf/
+        return dir    
+    except:
+        return 0
+
+def version():
+    if directory() == 0:
+        return 0
+    else:
+        dir = directory()
+
+        try:
+            with open(f"{dir}/.version", "r") as ver:
+                version = ver.read() # getting a program version (in .version)
+                return version
+        except:
+            return 0
+
+def update_check():
+    if os.name != "nt": # works only on Unix-based OSes
+        if shutil.which("curl") is None:
+            return 3 # curl is not installed
+        else:
+            if version() == 0:
+                return 4 # version isn't detected
+            else:
+                try:
+                    dir = directory()
+                    cmd = f"curl https://raw.githubusercontent.com/meow4820/hperf/refs/heads/main/.version >> {dir}/.ver"
+                    subprocess.run(cmd, 
+                                    shell=True, 
+                                    stdout=subprocess.DEVNULL, 
+                                    stderr=subprocess.DEVNULL) # getting lastest version
+                    with open(f"{dir}/.ver", "r") as rem_ver:
+                        if version() in rem_ver:
+                            os.remove(f"{dir}/.ver")
+                            return 1 # lastest version is already installed
+                        else:
+                            os.remove(f"{dir}/.ver")
+                            return 2 # found newer version
+                except Exception as e:
+                    return e
 
 def get(info):
     ret = ""
