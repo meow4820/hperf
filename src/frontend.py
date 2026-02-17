@@ -1,13 +1,15 @@
-import backend, os, time
+import os, time
+import bck.helper as help
+import bck.upd as updater
+import bck.bench as bench
+import bck.config as cfg
 
 version = ""
 
-def start():
-    version = backend.version()
-
+def update():
     os.system("clear||cls")
     print("Checking for updates...")
-    upd = backend.update_check()
+    upd = updater.check()
     if upd == 2:
         print("Update detected!\nYou can download the newest version from GitHub" +
             "\nhttps://github.com/meow4820/hperf")
@@ -36,92 +38,107 @@ def start():
                "Press ENTER to continue...")
         input()
 
-    while True:
+def b_result(avg_t, pts, type, tests): # benchmark result
+    os.system("clear||cls")
+    print("============== Results ==============")
+    print(f"\nTest type: {type}, {tests} test(s)" +
+            f"\nAverage time: {round(avg_t, 3)} sec" +
+            f"\nPoints: {round(pts, 1)} pts")
+    print("\n\nPress ENTER to continue")
+    input()
+
+def benchmark(type, tests):
+    if cfg.get("warning"):
         os.system("clear||cls")
-        print("=============== hPerf ===============")
-        print("\nSelect test type:\n\n" +
-                "1. Single-core test\n" +
-                "2. Multi-core test\n\n" +
-                
-                "3. Information\n" +
-                "4. Exit")
-        ans = input("\n>> ")
+        print("============== WARNING ==============")
+        print("For better accuracy, you need to close all heavy apps!")
+        print("Press ENTER to continue...")
+        input()
 
-        if ans == "1": # single core
+    if type == 1: # single core
+        os.system("clear||cls")
+
+        time_total = 0
+
+        for test in range(tests):
             os.system("clear||cls")
-            print("============== WARNING ==============")
-            print("For better accuracy, you need to close all heavy apps!")
-            print("Press ENTER to continue...")
-            input()
+            print(     "============= Single-core test =============")
+            if test != 9:
+                print(f"============= {test + 1} / 10 =======================")
+            elif test == 9: # handling the last test
+                print(f"============= {test + 1} / 10 ======================")
+            start = time.time() # test start time
+            bench.spd(1, 25_000_000)
+            end = time.time() # test end time
+            time_total += (end - start)
 
-            time_total = 0
+        time_avg = (time_total / tests)
+        points = 10_000 / time_avg
 
-            for test in range(10):
-                os.system("clear||cls")
-                print(     "============= Single-core test =============")
-                if test != 9:
-                    print(f"============= {test + 1} / 10 =======================")
-                elif test == 9: # handling the last test
-                    print(f"============= {test + 1} / 10 ======================")
-                start = time.time() # test start time
-                backend.spd(1, 25_000_000)
-                end = time.time() # test end time
-                time_total += (end - start)
+        os.system("clear||cls")
+        b_result(time_avg, points, "Single-core", tests)
 
-            time_avg = (time_total / 10)
-            points = 10_000 / time_avg
+    elif type == 2: # multi core
+        os.system("clear||cls")
 
+        time_total = 0
+
+        for test in range(tests):
             os.system("clear||cls")
-            print("============== Results ==============")
-            print(f"\nTest type: Single-core, 10 tests" +
-                  f"\nAverage time: {round(time_avg, 3)} sec" +
-                  f"\nPoints: {round(points, 1)} pts")
-            print("\n\nPress ENTER to continue")
-            input()
+            print( "============= Multi-core test ==============")
+            if test != 9:
+                print(f"============= {test + 1} / 10 =======================")
+            elif test == 9: # handling the last test
+                print(f"============= {test + 1} / 10 ======================")
+            start = time.time()
+            bench.spd(2, 25_000_000)
+            end = time.time()
+            time_total += (end - start)
 
-        elif ans == "2": # multi core
-            os.system("clear||cls")
-            print("============== WARNING ==============")
-            print("For better accuracy, you need to close all heavy apps!")
-            print("Press ENTER to continue...")
-            input()
-            time_total = 0
+        time_avg = (time_total / tests)
+        points = 10_000 / time_avg
 
-            for test in range(10):
-                os.system("clear||cls")
-                print( "============= Multi-core test ==============")
-                if test != 9:
-                    print(f"============= {test + 1} / 10 =======================")
-                elif test == 9: # handling the last test
-                    print(f"============= {test + 1} / 10 ======================")
-                start = time.time()
-                backend.spd(2, 25_000_000)
-                end = time.time()
-                time_total += (end - start)
+        os.system("clear||cls")
+        b_result(time_avg, points, "Multi-core", tests)
+    
+    mm(False)
 
-            time_avg = (time_total / 10)
-            points = 10_000 / time_avg
+def mm(check_update):
+    version = help.version()
 
-            os.system("clear||cls")
-            print("============== Results ==============")
-            print(f"\nTest type: Multi-core, 10 tests" +
-                  f"\nAverage time: {round(time_avg, 3)} sec" +
-                  f"\nPoints: {round(points, 1)} pts")
-            print("\n\nPress ENTER to continue")
-            input()
+    if check_update and cfg.get("update") == 1:
+        update()
+    
+    os.system("clear||cls")
+    print("=============== hPerf ===============")
+    print("\nSelect test type:\n\n" +
+            "1. Single-core test\n" +
+            "2. Multi-core test\n\n" +
+            
+            "3. Information\n" +
+            "4. Exit")
+    ans = input("\n>> ")
 
-        elif ans == "3":
-            os.system("clear||cls")
-            print(     "============ Information ============")
-            print(  f"\nCPU cores: {backend.get(1)}")
-            print(    f"CPU model: {backend.get(2)}")
-            print(  f"\nProgram version: {version}")
-            print(    f"Program directory {backend.directory()}")
-            print(    f"Python version: {backend.get(3)}")
+    if ans == "1": # single core
+        benchmark(1, 10)
 
-            print("\n\nPress ENTER to continue...\n")
-            input()
+    elif ans == "2": # multi core
+        benchmark(2, 10)
 
-        elif ans == "4": # exit
-            os.system("clear||cls")
-            exit()
+    elif ans == "3":
+        os.system("clear||cls")
+        print(     "============ Information ============")
+        print(  f"\nCPU cores: {help.get(1)}")
+        if cfg.get("cpu_model") == 1:
+            print(    f"CPU model: {help.get(2)}")
+        print(  f"\nProgram version: {version}")
+        print(    f"Program directory {help.directory()}")
+        print(    f"Python version: {help.get(3)}")
+
+        print("\n\nPress ENTER to continue...\n")
+        input()
+        mm(False)
+
+    elif ans == "4": # exit
+        os.system("clear||cls")
+        exit()
