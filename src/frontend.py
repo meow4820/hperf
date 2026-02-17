@@ -117,6 +117,7 @@ def start():
             print(    f"CPU model: {backend.get(2)}")
             print(  f"\nProgram version: {version}")
             print(    f"Program directory {backend.directory()}")
+            print(    f"Python version: {backend.get(3)}")
 
             print("\n\nPress ENTER to continue...\n")
             input()

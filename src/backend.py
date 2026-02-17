@@ -44,7 +44,7 @@ def update_check():
                             os.remove(f"{dir}/.ver")
                             return 2 # found newer version
                 except Exception as e:
-                    return e
+                    return e # some error
 
 def get(info):
     ret = ""
@@ -55,6 +55,10 @@ def get(info):
         otpt = subprocess.check_output("lscpu | grep 'Model name'", shell=True, text=True)
         model = otpt.replace("Model name:", "").strip()
         ret = model
+    elif info == 3: # Python version
+        otpt = subprocess.check_output("python --version", shell=True, text=True)
+        version = otpt.replace("Python", "").strip()
+        ret = version  
 
     return ret
 
