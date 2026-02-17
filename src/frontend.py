@@ -11,7 +11,7 @@ def start():
     if upd == 2:
         print("Update detected!\nYou can download the newest version from GitHub" +
             "\nhttps://github.com/meow4820/hperf")
-        print("\n Press ENTER to continue...")
+        print("\nPress ENTER to continue...")
         input()
 
     elif upd == 1:
