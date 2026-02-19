@@ -13,3 +13,15 @@ def get(data):
 
     elif data == "cpu_model":
         return f["show_cpu_model"]
+
+    elif data == "setup":
+        return f["setup_on_startup"]
+
+def set(data, value):
+    with open(f"{help.directory()}/config.json", "r") as cfg:
+        f = json.load(cfg)
+
+    f[data] = value
+
+    with open(f"{help.directory()}/config.json", "w") as cfg:
+        json.dump(f, cfg)

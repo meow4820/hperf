@@ -1,7 +1,12 @@
 # Launcher for hPerf
 
-import frontend
+import tui.frontend as frt
+import tui.setup as set
 import bck.config as cfg
 
 if __name__ == "__main__":
-    frontend.mm(True)
+    if cfg.get("setup") == 1:
+        set.main()
+
+    else:
+        frt.mm(1)
