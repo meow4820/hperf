@@ -12,18 +12,14 @@ It's highly recommended to close all programs on your device to get accurate res
 
 Tested on: Linux, Android.
 
-Windows support is not guaranteed!
+Bindoj support is not guaranteed!
 
 ## 📸 Screenshots:
 
-### Main menu
-<img width="804" height="321" alt="image" src="https://github.com/user-attachments/assets/f9e7a735-bafd-454f-9315-7c6cfd2f41bf" />
+<img width="1366" height="314" alt="image" src="https://github.com/user-attachments/assets/dcbd2b67-b69e-4dc4-a268-202fc27a958d" />
 
-### Informaton in main menu
-<img width="804" height="356" alt="image" src="https://github.com/user-attachments/assets/d09e93a2-5acf-4e60-89b5-ba2648ecfcf4" />
+<img width="1366" height="314" alt="image" src="https://github.com/user-attachments/assets/f3796b30-ae46-4ec8-b19b-e40524c85a6f" />
 
-### During a multi-core test
-<img width="804" height="291" alt="image" src="https://github.com/user-attachments/assets/5b9bd65d-6776-45b5-8035-0eeb6128c1f3" />
+<img width="1366" height="314" alt="image" src="https://github.com/user-attachments/assets/2ce4306f-62af-4905-acee-689324ba09f0" />
 
-### Multi-core test results
-<img width="804" height="273" alt="image" src="https://github.com/user-attachments/assets/bdb9d112-20d4-4659-8481-03314dfbb1aa" />
+<img width="1366" height="314" alt="image" src="https://github.com/user-attachments/assets/1a871672-1c43-4210-92ed-99e33befd4ce" />
