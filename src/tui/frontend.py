@@ -48,7 +48,7 @@ def b_result(avg_t, pts, type, tests): # benchmark result
     input()
 
 def benchmark(type, tests):
-    if cfg.get("warning"):
+    if cfg.get("show_test_warning"):
         os.system("clear||cls")
         print("============== WARNING ==============")
         print("For better accuracy, you need to close all heavy apps!")
@@ -67,6 +67,8 @@ def benchmark(type, tests):
                 print(f"============= {test + 1} / 10 =======================")
             elif test == 9: # handling the last test
                 print(f"============= {test + 1} / 10 ======================")
+            if cfg.get("show_cpu_freq") == 1:
+                print(f"\nCPU average freq: {help.get.avg_cpu_freq()} MHz\n\n")
             start = time.time() # test start time
             bench.spd(1, 25_000_000)
             end = time.time() # test end time
@@ -90,6 +92,8 @@ def benchmark(type, tests):
                 print(f"============= {test + 1} / 10 =======================")
             elif test == 9: # handling the last test
                 print(f"============= {test + 1} / 10 ======================")
+            if cfg.get("show_cpu_freq") == 1:
+                print(f"\nCPU average freq: {help.get.avg_cpu_freq()} MHz\n\n")
             start = time.time()
             bench.spd(2, 25_000_000)
             end = time.time()
@@ -106,7 +110,7 @@ def benchmark(type, tests):
 def mm(check_update):
     version = help.version()
 
-    if check_update and cfg.get("update") == 1:
+    if check_update and cfg.get("check_for_updates") == 1:
         update()
     
     os.system("clear||cls")
@@ -128,12 +132,12 @@ def mm(check_update):
     elif ans == "3":
         os.system("clear||cls")
         print(     "============ Information ============")
-        print(  f"\nCPU cores: {help.get(1)}")
-        if cfg.get("cpu_model") == 1:
-            print(    f"CPU model: {help.get(2)}")
+        print(  f"\nCPU cores: {help.get.cpu_cores()}")
+        if cfg.get("show_cpu_model") == 1:
+            print(    f"CPU model: {help.get.cpu_model()}")
         print(  f"\nProgram version: {version}")
         print(    f"Program directory {help.directory()}")
-        print(    f"Python version: {help.get(3)}")
+        print(    f"Python version: {help.get.py_ver()}")
 
         print("\n\nPress ENTER to continue...\n")
         input()

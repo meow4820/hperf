@@ -21,18 +21,44 @@ def version():
         except:
             return 0
 
-def get(info):
-    ret = ""
-    
-    if info == 1: # CPU cores
+class get:
+    def cpu_cores():
         ret = multiprocessing.cpu_count()
-    elif info == 2: # CPU model
+        return ret
+
+    def cpu_model():
         otpt = subprocess.check_output("lscpu | grep 'Model name'", shell=True, text=True)
         model = otpt.replace("Model name:", "").strip()
         ret = model
-    elif info == 3: # Python version
+        return ret
+
+    def py_ver():
         otpt = subprocess.check_output("python --version", shell=True, text=True)
         version = otpt.replace("Python", "").strip()
-        ret = version  
+        ret = version
+        return ret
 
-    return ret
+    def avg_cpu_freq():
+        otpt = subprocess.check_output("cat /proc/cpuinfo", shell=True, text=True)
+        lines = otpt.split("\n")
+
+        freq_l = [line for line in lines if 'MHz' in line]
+
+        freq_arr = []
+
+        for line in freq_l:
+            prt = line.split(":")
+            value = float(prt[1].strip())
+            freq_arr.append(value)
+
+        freq_avg = 0
+        freq_total = 0
+        index = 0
+
+        for i in freq_arr:
+            freq_total += freq_arr[index]
+            index += 1
+
+        freq_avg = int(round((freq_total / (get.cpu_cores())), 0))
+
+        return freq_avg

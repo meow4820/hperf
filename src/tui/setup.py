@@ -31,6 +31,21 @@ def main():
         else:
             cfg.set("show_cpu_model", 1)
 
+    os.system("clear||cls")
+
+    if os.name != "nt":
+        print(      "=============== Setup ===============")
+        print(    "\nShow CPU frequency while in test?\n" +
+                  "If you're on Windows, this will not work\n")
+
+        ans = input("(Y/n) >>")
+
+        if ans.lower() == "n":
+            cfg.set("show_cpu_freq", 0)
+
+        else:
+            cfg.set("show_cpu_freq", 1)
+
     cfg.set("setup_on_startup", 0)
 
     frt.mm(False) 

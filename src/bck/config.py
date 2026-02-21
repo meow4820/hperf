@@ -5,17 +5,7 @@ def get(data):
     with open(f"{help.directory()}/config.json", "r") as cfg:
         f = json.load(cfg)
 
-    if data == "update":
-        return f["check_for_updates"]
-
-    elif data == "warning":
-        return f["show_test_warning"]
-
-    elif data == "cpu_model":
-        return f["show_cpu_model"]
-
-    elif data == "setup":
-        return f["setup_on_startup"]
+    return f[data]
 
 def set(data, value):
     with open(f"{help.directory()}/config.json", "r") as cfg:

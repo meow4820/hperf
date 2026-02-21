@@ -1,1 +1,1 @@
-{"check_for_updates": 1, "show_test_warning": 1, "show_cpu_model": 1, "setup_on_startup": 1}
+{"check_for_updates": 0, "show_test_warning": 1, "show_cpu_model": 1, "setup_on_startup": 1, "show_cpu_freq": 1}
