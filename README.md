@@ -12,7 +12,7 @@ It's highly recommended to close all programs on your device to get accurate res
 
 Tested on: Linux, Android.
 
-Bindoj support is not guaranteed!
+Windows support is not guaranteed!
 
 ## 📸 Screenshots:
 
