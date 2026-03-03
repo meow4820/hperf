@@ -21,6 +21,10 @@ def version():
         except:
             return 0
 
+def os_name():
+    ret = os.name
+    return ret
+
 class get:
     def cpu_cores():
         ret = multiprocessing.cpu_count()

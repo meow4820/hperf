@@ -20,6 +20,9 @@ def check():
                         if help.version() in rem_ver:
                             os.remove(f"{dir}/.ver")
                             return 1 # lastest version is already installed
+                        elif rem_ver.readline().strip() == "":
+                            os.remove(f"{dir}/.ver")
+                            return 5 # network error
                         else:
                             os.remove(f"{dir}/.ver")
                             return 2 # found newer version

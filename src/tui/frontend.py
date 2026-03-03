@@ -11,7 +11,7 @@ def update():
     print("Checking for updates...")
     upd = updater.check()
     if upd == 2:
-        print("Update detected!\nYou can download the newest version from GitHub" +
+        print("Update detected :)\nYou can download the newest version from GitHub" +
             "\nhttps://github.com/meow4820/hperf")
         print("\nPress ENTER to continue...")
         input()
@@ -21,20 +21,26 @@ def update():
         time.sleep(0.5)
 
     elif upd == 3:
-        print("Update failed :(\n\n" +
-              "curl is not installed!\n\n" +
+        print("Update skipped :|\n\n" +
+              "curl is not installed\n\n" +
               "Press ENTER to continue...")
         input()
 
     elif upd == 4:
-        print("Update failed :(\n\n" +
+        print("Update skipped :|\n\n" +
               "Cannot open .version file\n\n" +
+              "Press ENTER to continue...")
+        input()
+
+    elif upd == 5:
+        print("Update skipped :|\n" + 
+              "Cannot reach GitHub server!\n\n" +
               "Press ENTER to continue...")
         input()
     
     else:
-        print(f"Update failed :(\n\n" +
-               "{upd}\n\n" +
+        print(f"Update skipped :|\n\n" +
+              f"{upd}\n\n" +
                "Press ENTER to continue...")
         input()
 
@@ -138,6 +144,7 @@ def mm(check_update):
         print(  f"\nProgram version: {version}")
         print(    f"Program directory {help.directory()}")
         print(    f"Python version: {help.get.py_ver()}")
+        print(    f"OS type: {os.name.upper()}")
 
         print("\n\nPress ENTER to continue...\n")
         input()
