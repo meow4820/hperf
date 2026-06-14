@@ -24,10 +24,6 @@ def spd(type, num): # types: 1 - single core, 2 - multi core
                                     if i != proc - 1 else total)
                                     for i in range(proc)])
 
-        # i * chunk_size - "start" arg for "cnt" func
-        # (i + 1) * chunk_size if i != proc - 1 else total - "end" arg for "cnt" func. 
-        #                      ^^^^^^^^^^^^^^^^ if else block here for handling the last core
-
         result = sum(res)
 
         if result == total:
